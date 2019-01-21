@@ -9,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Hello Heroku!</h1>
+          <h2>This is v1</h2>
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
