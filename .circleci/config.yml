@@ -81,7 +81,7 @@ jobs:
           name: Running test
           command: yarn test
 
-  deploy:
+  deploy-heroku:
     docker:
       - image: buildpack-deps:trusty
     steps:
@@ -93,6 +93,15 @@ jobs:
 workflows:
   version: 2
 
+  tagged-deploy:
+    jobs:
+      - deploy-heroku:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+
   # build_and_test:
   #   jobs:
   #     - prepare
@@ -102,17 +111,3 @@ workflows:
   #     - test:
   #         requires:
   #           - build
-
-  deploy:
-    filters:
-      branches:
-        tags:
-          only: /^v.*/
-    jobs:
-      # - prepare
-      # - build:
-      #     requires:
-      #       - prepare
-      - deploy:
-          requires:
-            - build
