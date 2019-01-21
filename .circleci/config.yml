@@ -85,6 +85,7 @@ jobs:
     docker:
       - image: buildpack-deps:trusty
     steps:
+      - checkout
       - run:
           name: Deploy to Heroku
           command: |
@@ -93,7 +94,7 @@ jobs:
 workflows:
   version: 2
 
-  tagged-deploy:
+  deploy:
     jobs:
       - deploy-heroku:
           filters:
