@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Versionning from 'library'
+
 class App extends Component {
   render() {
     return (
@@ -9,7 +11,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Hello Heroku!</h1>
-          <h2>This is v1.1</h2>
+          <Versionning version="1.1" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -27,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default Coucou;
+export default App;

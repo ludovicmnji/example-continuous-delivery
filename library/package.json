@@ -1,0 +1,24 @@
+{
+  "name": "library",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel src -d dist",
+    "test": "echo \"No test\""
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
