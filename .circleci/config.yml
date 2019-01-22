@@ -77,7 +77,6 @@ jobs:
       #     command: npm install --no-package-lock
       - attach_workspace:
           at: ~/example-continuous-delivery
-      - run: cd website
       - run:
           name: Build website
           command: |
@@ -106,7 +105,6 @@ jobs:
       #     command: npm install --no-package-lock
       - attach_workspace:
           at: ~/example-continuous-delivery
-      - run: cd library
       - run:
           name: Running test
           command: |
