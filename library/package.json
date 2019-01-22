@@ -6,7 +6,8 @@
   "module": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src -d dist",
-    "test": "echo \"No test\""
+    "test": "echo \"No test\"",
+    "publish": "echo \"Publish on npm\""
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

@@ -111,7 +111,20 @@ jobs:
             cd library
             yarn test
 
-  deploy-heroku:
+  publish-on-npm:
+    working_directory: ~/example-continuous-delivery
+    docker:
+      - image: circleci/node:$NODE_VERSION
+    steps:
+      - attach_workspace:
+          at: ~/example-continuous-delivery
+      - run:
+          name: Publish on npm
+          command: |
+            cd library
+            yarn run publish
+
+  deploy-on-heroku:
     docker:
       - image: buildpack-deps:trusty
     steps:
@@ -137,9 +150,12 @@ workflows:
           requires:
             - build-library
             - build-website
-      - deploy-heroku:
+      - publish-on-npm:
           requires:
             - test-library
+      - deploy-on-heroku:
+          requires:
+            - publish-on-npm
           # filters:
           #   tags:
           #     only: /^v.*/
