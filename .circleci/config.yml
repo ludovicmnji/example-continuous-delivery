@@ -155,48 +155,48 @@ workflows:
     jobs:
       - prepare:
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - build-library:
           requires:
             - prepare
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - build-website:
           requires:
             - prepare
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - test-library:
           requires:
             - build-library
             - build-website
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - publish-on-npm:
           requires:
             - test-library
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - deploy-on-heroku:
           requires:
             - publish-on-npm
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
