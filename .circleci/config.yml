@@ -139,30 +139,50 @@ workflows:
 
   build_test_deploy:
     jobs:
-      - prepare
+      - prepare:
+          filters:
+            branches:
+              only: monorepo
+            tags:
+              only: /^v.*/
       - build-library:
           requires:
             - prepare
+          filters:
+            branches:
+              only: monorepo
+            tags:
+              only: /^v.*/
       - build-website:
           requires:
             - prepare
+          filters:
+            branches:
+              only: monorepo
+            tags:
+              only: /^v.*/
       - test-library:
           requires:
             - build-library
             - build-website
+          filters:
+            branches:
+              only: monorepo
+            tags:
+              only: /^v.*/
       - publish-on-npm:
           requires:
             - test-library
           filters:
-            tags:
-              only: /^v.*/
             branches:
               only: monorepo
+            tags:
+              only: /^v.*/
       - deploy-on-heroku:
           requires:
             - publish-on-npm
           filters:
-            tags:
-              only: /^v.*/
             branches:
               only: monorepo
+            tags:
+              only: /^v.*/
