@@ -153,6 +153,11 @@ workflows:
       - publish-on-npm:
           requires:
             - test-library
+          filters:
+            branches:
+              only: monorepo
+            tags:
+              only: /^v.*/
       - deploy-on-heroku:
           requires:
             - publish-on-npm
