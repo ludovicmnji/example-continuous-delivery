@@ -158,7 +158,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - build-library:
           requires:
             - prepare
@@ -166,7 +166,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - build-website:
           requires:
             - prepare
@@ -174,7 +174,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - test-library:
           requires:
             - build-library
@@ -183,7 +183,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - publish-on-npm:
           requires:
             - test-library
@@ -191,7 +191,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - deploy-on-heroku:
           requires:
             - publish-on-npm
@@ -199,4 +199,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
