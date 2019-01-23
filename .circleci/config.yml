@@ -156,8 +156,9 @@ workflows:
       - deploy-on-heroku:
           requires:
             - publish-on-npm
-          # filters:
-          #   tags:
-          #     only: /^v.*/
-          #   branches:
-          #     ignore: /.*/
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: monorepo
+              ignore: /.*/
