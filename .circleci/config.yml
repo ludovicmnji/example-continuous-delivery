@@ -154,15 +154,15 @@ workflows:
           requires:
             - test-library
           filters:
-            branches:
-              only: monorepo
             tags:
               only: /^v.*/
+            branches:
+              only: monorepo
       - deploy-on-heroku:
           requires:
             - publish-on-npm
           filters:
-            branches:
-              only: monorepo
             tags:
               only: /^v.*/
+            branches:
+              only: monorepo
