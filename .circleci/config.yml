@@ -137,7 +137,7 @@ jobs:
 workflows:
   version: 2
 
-  build_test:
+  build_test_deploy:
     jobs:
       - prepare
       - build-library:
@@ -150,40 +150,6 @@ workflows:
           requires:
             - build-library
             - build-website
-
-  build_test_deploy:
-    jobs:
-      - prepare:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - build-library:
-          requires:
-            - prepare
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - build-website:
-          requires:
-            - prepare
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - test-library:
-          requires:
-            - build-library
-            - build-website
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
       - publish-on-npm:
           requires:
             - test-library
@@ -191,7 +157,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
       - deploy-on-heroku:
           requires:
             - publish-on-npm
@@ -199,4 +165,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: monorepo
